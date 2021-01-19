@@ -1,34 +1,17 @@
-console.log('hello world');
+async function main() {
+    
+    // Show the joke on the page:
+    // 1. make the Request using fetch()
+    const jokePromise = fetch('https://icanhazdadjoke.com', {
+        headers: {
+            Accept: 'application/json'
+        }
+    });
+    const response = await jokePromise; // 2. grab the .joke
+    const jokeData = await response.json();
+    console.log(jokeData);
+    console.log(jokeData.joke);
+    // 3. render it to the page
+}
 
-
-// function processResponse(response) {
-//     return response.json
-
-
-// Show the joke on the page:
-// 1. Make the request using fetch()
-fetch('https://icanhazdadjoke.com', {
-    headers: {
-        Accept: 'application/json'
-    }
-})
-.then(response => {
-    console.log(response)
-    const theData = response.json();
-     return theData;  // returns to the next .then()
-}) // convert to JSON
-
-.then(data => { // data is plain Javascript Object
-    console.log(data);
-    return data.json;
-})
-
-.then(theJoke => {
-    console.log(theJoke);
-})
-
-.catch(err => console.log(err))
-
-// 2. Grab the .joke
-// 3. Render it to the page
-
+main();
